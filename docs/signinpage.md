@@ -15,4 +15,6 @@
 
 ## TODO:
 
--   separate the form component from the card component to the image block doesn't have to be duplicated
+~~- separate the form component from the card component to the image block doesn't have to be duplicated~~
+
+-   maybe add react-icons (font awesome) the provider buttons

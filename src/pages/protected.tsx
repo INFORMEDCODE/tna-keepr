@@ -1,20 +1,13 @@
 import type { GetServerSidePropsContext, GetServerSideProps } from "next";
-import { getSession, signOut } from "next-auth/react";
+import { getSession } from "next-auth/react";
+
+import Header from "../components/Header";
 
 const ProtectedPage = () => {
     return (
         <>
+            <Header />
             <h1 className="text-xl"> you made it! </h1>
-            <button
-                onClick={() =>
-                    signOut({
-                        callbackUrl: "/",
-                    })
-                }
-                className="rounded-md border p-2 hover:bg-slate-300 hover:shadow-md"
-            >
-                Sign Out
-            </button>
         </>
     );
 };

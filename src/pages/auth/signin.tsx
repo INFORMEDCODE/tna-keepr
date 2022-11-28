@@ -1,5 +1,4 @@
 import { GetServerSideProps, GetServerSidePropsContext } from "next";
-import { Session } from "next-auth";
 import { getProviders, signIn, getSession } from "next-auth/react";
 import { useRef } from "react";
 
