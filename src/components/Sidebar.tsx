@@ -2,15 +2,15 @@ import { useState } from "react";
 
 const Sidebar = () => {
     return (
-        <div id="sidebarWrapper">
-            <div className="h-[calc(100vh-56px)] w-72 border-2 border-dashed border-orange-400">
+        <aside id="sidebarWrapper">
+            <nav className="h-[calc(100vh-56px)] w-72 border-2 border-dashed border-orange-400">
                 {sideBarItems
                     ? sideBarItems.map((sideBarItem) => (
                           <ExpandableSidebarItem {...sideBarItem} />
                       ))
                     : null}
-            </div>
-        </div>
+            </nav>
+        </aside>
     );
 };
 

@@ -1,12 +1,9 @@
-import type { GetServerSideProps } from "next";
+import type { GetServerSideProps, InferGetServerSidePropsType } from "next";
 import { getSession } from "next-auth/react";
 
-import Header from "../components/Header";
-
-const ProtectedPage = () => {
+const ProtectedPage: React.FC<ProtectedPageProps> = ({ session }) => {
     return (
         <>
-            <Header />
             <h1 className="text-xl"> you made it! </h1>
         </>
     );
@@ -14,9 +11,7 @@ const ProtectedPage = () => {
 
 export default ProtectedPage;
 
-export const getServerSideProps = (async (
-    ctx
-) => {
+export const getServerSideProps = (async (ctx) => {
     const session = await getSession(ctx);
 
     if (!session) {
@@ -34,3 +29,7 @@ export const getServerSideProps = (async (
         },
     };
 }) satisfies GetServerSideProps;
+
+type ProtectedPageProps = InferGetServerSidePropsType<
+    typeof getServerSideProps
+>;
