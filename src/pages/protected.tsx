@@ -1,4 +1,4 @@
-import type { GetServerSidePropsContext, GetServerSideProps } from "next";
+import type { GetServerSideProps } from "next";
 import { getSession } from "next-auth/react";
 
 import Header from "../components/Header";
@@ -14,8 +14,8 @@ const ProtectedPage = () => {
 
 export default ProtectedPage;
 
-export const getServerSideProps: GetServerSideProps = async (
-    ctx: GetServerSidePropsContext
+export const getServerSideProps = (async (
+    ctx
 ) => {
     const session = await getSession(ctx);
 
@@ -33,4 +33,4 @@ export const getServerSideProps: GetServerSideProps = async (
             session,
         },
     };
-};
+}) satisfies GetServerSideProps;

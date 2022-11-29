@@ -1,9 +1,6 @@
 import { type NextPage } from "next";
 import Link from "next/link";
 import Head from "next/head";
-import { signIn } from "next-auth/react";
-// import Link from "next/link";
-// import { signIn, signOut, useSession } from "next-auth/react";
 
 const Home: NextPage = () => {
     return (
