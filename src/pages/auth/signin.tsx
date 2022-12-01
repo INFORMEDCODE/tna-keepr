@@ -44,7 +44,7 @@ const Signin: React.FC<SigninProps> = ({ providers }) => {
                                                                 provider.id,
                                                                 {
                                                                     callbackUrl:
-                                                                        "/protected",
+                                                                        "/secrets",
                                                                 }
                                                             )
                                                         }
@@ -103,7 +103,7 @@ export const getServerSideProps: GetServerSideProps = async (
     if (session) {
         return {
             redirect: {
-                destination: "/protected",
+                destination: "/secrets",
                 permanent: false,
             },
         };

@@ -1,7 +1,22 @@
 import { z } from "zod";
-import { router, protectedProcedure } from "../trpc";
+import { router, protectedProcedure, publicProcedure } from "../trpc";
 
 export const secretsRouter = router({
+    // test endpoint for just getting secrets and populating table
+    listFavouriteSecrets: publicProcedure.query(async ({ ctx }) => {
+        return await ctx.prisma.secret.findMany({
+            where: {
+                favourite: false,
+            },
+        });
+    }),
+    listFavouriteSecretsProtected: protectedProcedure.query(async ({ ctx }) => {
+        return await ctx.prisma.secret.findMany({
+            where: {
+                ownerId: ctx.session.user.id,
+            },
+        });
+    }),
     // lists all secrets but does not return the secret value
     listSecrets: protectedProcedure.query(async ({ ctx }) => {
         return await ctx.prisma.secret.findMany({

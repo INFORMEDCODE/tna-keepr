@@ -54,7 +54,7 @@ model User {
   email         String?   @unique
   emailVerified DateTime?
   image         String?
-  password      String? // @db.Text
+  masterKey     String? // @db.Text
   accounts      Account[]
   sessions      Session[]
   secrets       Secret[]
@@ -71,11 +71,13 @@ model VerificationToken {
 // Secret Data
 // Dunno how this should work, having a table filled with "secrets" seems like a bad idea
 model Secret {
-  id        String   @default(cuid())
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  name      String
-  value     String
+  id          String   @default(cuid())
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  name        String
+  value       String
+  favourite   Boolean? @default(false)
+  description String? // @db.Text
 
   owner   User   @relation(fields: [ownerId], references: [id])
   ownerId String
