@@ -1,5 +1,4 @@
-import { useEffect } from "react";
-import { useRef, useState } from "react";
+import { useState } from "react";
 
 // CONSTANTS
 const ENCRYPTION_ALGORITHM = "aes-gcm";
@@ -153,7 +152,7 @@ const EncodePage = () => {
                     type="text"
                     id="masterKey"
                     value={masterKey}
-                    className="rounded border border-2 border-solid p-2"
+                    className="rounded border-2 border-solid p-2"
                     onChange={(e) => setMasterKey(e.currentTarget.value)}
                 />
             </div>
@@ -166,7 +165,7 @@ const EncodePage = () => {
                     type="text"
                     id="textToEncrypt"
                     value={textToEncrypt}
-                    className="w-full rounded border border-2 border-solid p-2"
+                    className="w-full rounded border-2 border-solid p-2"
                     onChange={(e) => setTextToEncrypt(e.currentTarget.value)}
                 />
             </div>

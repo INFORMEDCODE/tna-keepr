@@ -49,15 +49,19 @@ model Session {
 }
 
 model User {
-  id            String    @id @default(cuid())
+  id            String         @id @default(cuid())
   name          String?
-  email         String?   @unique
+  email         String?        @unique
   emailVerified DateTime?
   image         String?
   masterKey     String? // @db.Text
   accounts      Account[]
   sessions      Session[]
   secrets       Secret[]
+  organisations Organisation[]
+  boxes         Box[]
+  items         Item[]
+  locations     Location[]
 }
 
 model VerificationToken {
@@ -83,4 +87,71 @@ model Secret {
   ownerId String
 
   @@id([ownerId, name])
+}
+
+model Organisation {
+  id        String   @id @unique @default(cuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  name        String
+  description String? // @db.Text
+  location    Location? @relation(fields: [locationId], references: [id])
+  locationId  String?
+  boxes       Box[]
+  owner       User      @relation(fields: [ownerId], references: [id])
+  ownerId     String
+
+  @@index([name, ownerId])
+}
+
+model Box {
+  id        String   @id @unique @default(cuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  name           String
+  description    String? // @db.Text
+  location       Location?     @relation(fields: [locationId], references: [id])
+  locationId     String?
+  items          Item[]
+  organisation   Organisation? @relation(fields: [organisationId], references: [id])
+  organisationId String?
+  owner          User          @relation(fields: [ownerId], references: [id])
+  ownerId        String
+
+  @@index([name, ownerId])
+}
+
+model Item {
+  id        String   @id @unique @default(cuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  name        String
+  description String? // @db.Text
+  location    Location? @relation(fields: [locationId], references: [id])
+  locationId  String?
+  box         Box?      @relation(fields: [boxId], references: [id])
+  boxId       String?
+  owner       User      @relation(fields: [ownerId], references: [id])
+  ownerId     String
+
+  @@index([name, ownerId])
+}
+
+model Location {
+  id        String   @id @unique @default(cuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  name          String
+  description   String? // @db.Text
+  organisations Organisation[]
+  boxes         Box[]
+  items         Item[]
+  owner         User           @relation(fields: [ownerId], references: [id])
+  ownerId       String
+
+  @@index([name, ownerId])
 }
