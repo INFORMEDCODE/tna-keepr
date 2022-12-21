@@ -13,9 +13,11 @@ const MyApp: AppType<{ session: Session | null }> = ({
     pageProps: { session, ...pageProps },
     ...appProps
 }) => {
-    const avoidsLayout = ["/auth/signin", "/"].includes(
-        appProps.router.pathname
-    );
+    const avoidsLayout = [
+        "/auth/signin",
+        "/",
+        "/playground/components",
+    ].includes(appProps.router.pathname);
     const LayoutComponent = avoidsLayout ? React.Fragment : Layout;
 
     return (

@@ -4,6 +4,10 @@ module.exports = {
     theme: {
         extend: {},
     },
-    plugins: [],
+    plugins: [
+        require("tailwindcss-radix")({
+            variantPrefix: "rdx"
+        }),
+    ],
     mode: "jit",
 };

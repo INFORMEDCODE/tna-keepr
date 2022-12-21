@@ -2,12 +2,18 @@ import { signOut } from "next-auth/react";
 
 const Header = () => {
     return (
-        <div className="grid w-full grid-cols-3 border-dashed border-2 border-red-700 p-1">
+        <div className="grid w-full grid-cols-3 border-2 border-dashed border-red-700 p-1">
             <div></div>
-            <div id="search-bar" className="flex justify-center border-dashed border-2 border-blue-300">
+            <div
+                id="search-bar"
+                className="flex justify-center border-2 border-dashed border-blue-300"
+            >
                 <SearchBarInput />
             </div>
-            <div id="sign-out" className="flex items-center justify-end border-dashed border-2 border-green-500">
+            <div
+                id="sign-out"
+                className="flex items-center justify-end border-2 border-dashed border-green-500"
+            >
                 <button
                     onClick={() =>
                         signOut({
